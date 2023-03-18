@@ -53,7 +53,7 @@ Response:
 
 The GET endpoint is used to retrieve the original URL from a shortened URL.
 
-URL: `/:shortened_url`
+URL: `data.url` from previous `POST` request
 
 Method: `GET`
 
