@@ -27,7 +27,6 @@ type Url struct {
 	Domain      string    `json:"domain" gorm:"column:domain"`
 	ShortUrl    string    `json:"short_url" gorm:"column:short_url"`
 	CreatedAt   time.Time `json:"created_at" gorm:"column:created_at;type:DATETIME"`
-	UpdatedAt   time.Time `json:"updated_at" gorm:"column:updated_at;type:DATETIME"`
 	ExpiresAt   time.Time `json:"expires_at" gorm:"column:expires_at;type:DATETIME"`
 }
 
