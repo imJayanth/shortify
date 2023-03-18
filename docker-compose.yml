@@ -1,22 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-  app:
-    build: .
-    ports:
-      - "8081:8081"
-    depends_on:
-      - db
-      - redis
-    environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: shortify_db
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-
   db:
     image: mysql:8.0
     ports:
@@ -24,10 +8,45 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: shortify_db
+      MYSQL_PORT: 3306
+    expose:
+      - 3306
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
+    networks:
+      - shortify-network
 
   redis:
     image: redis
     ports:
       - "6379:6379"
+    expose:
+      - 6379
+    networks:
+      - shortify-network
+  app:
+    build: .
+    ports:
+      - "8081:8081"
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+    environment:
+      DBHOST: db
+      DBPORT: 3306
+      DBUSER: root
+      DBPASSWORD: root
+      DBNAME: shortify_db
+      REDISHOST: redis
+      REDISPORT: 6379
+    links:
+      - db
+      - redis
+    networks:
+      - shortify-network
+
+networks:
+  shortify-network:
+    driver: bridge
