@@ -14,4 +14,4 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o bin/shortify cmd/main.go
 EXPOSE 8081
 
 # Start the application
-CMD ["./shortify"]
+CMD ["/app/bin/shortify"]
