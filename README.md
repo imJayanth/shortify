@@ -24,3 +24,41 @@ To run Shortify, you need to have Docker and Docker Compose installed on your sy
     `docker-compose up -d`
 
 Shortify should now be up and running at `http://localhost:8081`.
+
+Usage
+-----
+
+### POST Endpoint
+
+The POST endpoint is used to create a shortened URL.
+
+URL: `/`
+Method: `POST`
+Headers:
+`Content-Type: application/json`
+Body:
+`{
+    "original_url": "https://example.com/very-long-url-that-needs-to-be-shortened"
+}`
+
+Response:
+`{
+    "data": {
+        "url": "localhost:8081/013"
+    },
+    "error": null
+}`
+
+### GET Endpoint
+
+The GET endpoint is used to retrieve the original URL from a shortened URL.
+
+URL: `/:shortened_url`
+
+Method: `GET`
+
+Response: A 301 redirect to the original URL.
+
+### Postman Collection
+
+A Postman collection is included in the repository (`shortify.postman_collection.json`) that contains sample requests for the POST and GET endpoints.
