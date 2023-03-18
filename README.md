@@ -61,4 +61,4 @@ Response: A 301 redirect to the original URL.
 
 ### Postman Collection
 
-A Postman collection is included in the repository (`shortify.postman_collection.json`) that contains sample requests for the POST and GET endpoints.
+A Postman collection is included in the repository (`shortify.postman_collection.json`) that contains sample requests for the POST endpoint.
